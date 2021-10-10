@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--suppress AndroidDomInspection-->
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:startDestination="@id/list_fragment"
+    android:id="@+id/main_nav_graph">
+
+    <fragment
+        android:id="@+id/list_fragment"
+        android:name="com.hubert.spacexcomposeql.list.ListFragment"
+        android:label="ListFragment" />
+
+    <fragment
+        android:id="@+id/detail_fragment"
+        android:name="com.hubert.spacexcomposeql.detail.DetailFragment"
+        android:label="DetailFragment">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_list_fragment"
+        app:destination="@id/list_fragment"
+        app:launchSingleTop="true" />
+
+    <action
+        android:id="@+id/action_global_detail_fragment"
+        app:destination="@id/detail_fragment"
+        app:launchSingleTop="true">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </action>
+</navigation>
