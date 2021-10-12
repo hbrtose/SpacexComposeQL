@@ -25,17 +25,19 @@ class ListFragment : Fragment() {
                 ViewGroup.LayoutParams.MATCH_PARENT
             )
             setContent {
-                vm.items.observeAsState().value?.let {
-                    ListScreen(launches = it) { id ->
-                        findNavController().navigate(MainNavGraphDirections.actionGlobalDetailFragment(id))
-                    }
+                vm.items.observeAsState().apply {
+                    ListScreen(
+                        launches = this,
+                        onItemClick = { id -> findNavController().navigate(MainNavGraphDirections.actionGlobalDetailFragment(id)) },
+                        onLastItemLoaded = { vm.getLaunches() }
+                    )
                 }
             }
         }
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         vm.getLaunches()
     }
 }

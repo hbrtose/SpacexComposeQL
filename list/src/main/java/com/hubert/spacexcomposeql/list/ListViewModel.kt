@@ -17,7 +17,7 @@ class ListViewModel @Inject constructor(private val listModel: ListModel) : View
     fun getLaunches() {
         viewModelScope.launch {
             listModel.getLaunches().apply {
-                _items.value = this
+                _items.value = (_items.value ?: emptyList()) + this
             }
         }
     }

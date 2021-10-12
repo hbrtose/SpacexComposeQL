@@ -4,11 +4,13 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -17,12 +19,16 @@ import coil.compose.rememberImagePainter
 
 @Composable
 fun ListScreen(
-    launches: List<LaunchItem>,
-    onItemClick: (Int) -> Unit
+    launches: State<List<LaunchItem>?>,
+    onItemClick: (Int) -> Unit,
+    onLastItemLoaded: () -> Unit
 ) {
     LazyColumn {
-        items(launches.size) { index ->
-            Item(launches[index], onItemClick)
+        itemsIndexed(launches.value ?: emptyList()) { index, item ->
+            if (index == (launches.value?.size ?: 0) - 1) {
+                onLastItemLoaded()
+            }
+            Item(item, onItemClick)
         }
     }
 }
