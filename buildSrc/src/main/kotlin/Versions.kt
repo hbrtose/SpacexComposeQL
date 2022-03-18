@@ -1,7 +1,7 @@
 object Versions {
     object GradlePlugins {
-        const val BUILD = "4.2.1"
-        const val KOTLIN = "1.5.30"
+        const val BUILD = "7.1.2"
+        const val KOTLIN = "1.6.10"
     }
 
     object Android {
@@ -12,8 +12,8 @@ object Versions {
     }
 
     object Compose {
-        const val COMPOSE = "1.0.3"
-        const val COIL = "1.4.0"
+        const val COMPOSE = "1.1.1"
+        const val COIL = "2.0.0-rc01"
     }
 
     object DI {

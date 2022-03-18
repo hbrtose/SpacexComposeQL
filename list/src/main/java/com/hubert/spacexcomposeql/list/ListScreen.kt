@@ -1,7 +1,6 @@
 package com.hubert.spacexcomposeql.list
 
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -16,9 +15,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberImagePainter
+import coil.compose.SubcomposeAsyncImage
 
-@Preview(showBackground = true)
 @Composable
 fun ListScreen(
     launches: State<List<LaunchItem>?>,
@@ -55,8 +53,8 @@ fun Subtitle(text: String = "SUBTITLE") {
 
 @Composable
 fun Logo(url: String = "https://i.imgur.com/00xCRZ6.png") {
-    Image(
-        painter = rememberImagePainter(url),
+    SubcomposeAsyncImage(
+        model = url,
         modifier = Modifier
             .size(64.dp)
             .padding(4.dp)
@@ -66,8 +64,9 @@ fun Logo(url: String = "https://i.imgur.com/00xCRZ6.png") {
     )
 }
 
+@Preview(showBackground = true)
 @Composable
-fun Item(item: LaunchItem, onItemClick: (Int) -> Unit) {
+fun Item(item: LaunchItem = LaunchItem(1, "t", "s", "https://i.imgur.com/00xCRZ6.png"), onItemClick: (Int) -> Unit = {}) {
     Surface {
         Row(modifier = Modifier.fillMaxWidth().clickable {
             onItemClick(item.id)

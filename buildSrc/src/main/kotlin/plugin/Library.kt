@@ -25,9 +25,6 @@ class Library : Plugin<Project> {
                     targetSdk = Config.compileSdkVersion
                     minSdk = Config.minSdkVersion
 
-                    versionCode = Config.versionCode
-                    versionName = Config.versionName
-
                     consumerProguardFiles("consumer-rules.pro")
                 }
 

@@ -31,11 +31,6 @@ android {
         }
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
     kotlinOptions {
         jvmTarget = Config.jvmTarget
     }
@@ -46,7 +41,6 @@ android {
 
     composeOptions {
         kotlinCompilerExtensionVersion = Versions.Compose.COMPOSE
-        kotlinCompilerVersion = Versions.Kotlin.KOTLIN
     }
 }
 
