@@ -25,7 +25,7 @@ class ListFragment : Fragment() {
                 ViewGroup.LayoutParams.MATCH_PARENT
             )
             setContent {
-                vm.items.observeAsState().apply {
+                vm.items.apply {
                     ListScreen(
                         launches = this,
                         onItemClick = { id -> findNavController().navigate(MainNavGraphDirections.actionGlobalDetailFragment(id)) },

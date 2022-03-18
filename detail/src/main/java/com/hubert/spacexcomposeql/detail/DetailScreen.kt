@@ -36,8 +36,6 @@ fun DetailScreen(item: DetailItem = DetailItem("site", "rakieta", "typ", true, "
     }
 }
 
-
-
 @Composable
 fun Title(text: String) {
     Text(

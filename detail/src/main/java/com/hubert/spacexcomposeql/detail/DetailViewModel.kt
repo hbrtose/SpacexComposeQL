@@ -1,5 +1,6 @@
 package com.hubert.spacexcomposeql.detail
 
+import androidx.compose.runtime.MutableState
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,13 +12,13 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailViewModel @Inject constructor(private val detailModel: DetailModel) : ViewModel() {
 
-    private val _launch = MutableLiveData<DetailItem>()
-    val launch: LiveData<DetailItem> = _launch
+    lateinit var launch: MutableState<DetailItem>
+    private set
 
     fun getLaunch(id: Int) {
         viewModelScope.launch {
-            detailModel.getDetail(id).apply {
-                _launch.value = this
+            detailModel.getDetail(id)?.apply {
+                launch.value = this
             }
         }
     }

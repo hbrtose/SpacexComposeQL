@@ -1,5 +1,6 @@
 package com.hubert.spacexcomposeql.list
 
+import androidx.compose.runtime.MutableState
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,13 +12,13 @@ import javax.inject.Inject
 @HiltViewModel
 class ListViewModel @Inject constructor(private val listModel: ListModel) : ViewModel() {
 
-    private val _items = MutableLiveData<List<LaunchItem>>()
-    val items: LiveData<List<LaunchItem>> = _items
+    lateinit var items: MutableState<List<LaunchItem>>
+    private set
 
     fun getLaunches() {
         viewModelScope.launch {
             listModel.getLaunches().apply {
-                _items.value = (_items.value ?: emptyList()) + this
+                items.value = (items.value) + this
             }
         }
     }

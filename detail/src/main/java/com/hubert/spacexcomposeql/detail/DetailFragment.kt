@@ -25,7 +25,7 @@ class DetailFragment : Fragment() {
             )
             
             setContent { 
-                vm.launch.observeAsState().value?.apply { 
+                vm.launch.value.apply {
                     DetailScreen(item = this)
                 }
             }
